@@ -737,6 +737,28 @@
 
 })();
 </script>
+<button id="checkout-button" style="
+  background:#000;
+  color:#fff;
+  padding:15px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:20px;
+">
+Payer ma commande
+</button>
 
+<script>
+document.getElementById("checkout-button").addEventListener("click", async () => {
+  const response = await fetch("/.netlify/functions/create-checkout", {
+    method: "POST",
+  });
+
+  const data = await response.json();
+  window.location.href = data.url;
+});
+</script>
 </body>
 </html>
